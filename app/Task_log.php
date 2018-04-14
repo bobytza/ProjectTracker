@@ -11,4 +11,20 @@ class Task_log extends Model
         'task_log_type_id', 'actual_hours', 'task_type_id'];
 
       public $timestamps = false;
+
+      public function task() {
+        return $this->belongsTo('App\Task');
+      }
+
+      public function user() {
+        return $this->belongsTo('App\User');
+      }
+
+      public function task_log_type() {
+        return $this->belongsTo('App\Task_log_type');
+      }
+
+      public function task_status() {
+        return $this->belongsTo('App\Task_status');
+      }
 }

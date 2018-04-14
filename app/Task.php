@@ -15,4 +15,24 @@ class Task extends Model
 'current_task_type_id', 'license_details', 'owner_user_id'];
 
     public $timestamps = false;
+
+    public function task_log_types() {
+      return $this->hasMany('App\Task_log_type');
+    }
+
+    public function task_user() {
+      return $this->hasOne('App\Task_user');
+    }
+
+    public function user() {
+      return $this->belongsTo('App\User');
+    }
+
+    public function project() {
+      return $this->belongsTo('App\Project');
+    }
+
+    public function priority() {
+      return $this->belongsTo('App\Priority');
+    }
 }

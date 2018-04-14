@@ -10,5 +10,11 @@ class Role extends Model
 
       public $timestamps = false;
 
-      
+      public function users() {
+        return $this->hasMany('App\User');
+      }
+
+      public function project_users() {
+        return $this->hasMany('App\Project_user');
+      }
 }

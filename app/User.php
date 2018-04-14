@@ -28,4 +28,32 @@ class User extends Authenticatable
     ];
 
     public $timestamps = false;
+
+    public function role() {
+      return $this->belongsTo('App\Role');
+    }
+
+    public function customer() {
+      return $this->belongsTo('App\Customer');
+    }
+
+    public function project_users() {
+      return $this->hasMany('App\Project_user');
+    }
+
+    public function project() {
+      return $this->hasMany('App\Project');
+    }
+
+    public function task() {
+      return $this->hasMany('App\Task');
+    }
+
+    public function task_user() {
+      return $this->hasMany('App\Task_user');
+    }
+
+    public function task_log() {
+      return $this->hasMany('App\Task_log');
+    }
 }
