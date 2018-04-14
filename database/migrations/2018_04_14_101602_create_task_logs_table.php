@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Carbon\Carbon;
 
 class CreateTaskLogsTable extends Migration
 {
@@ -22,7 +23,9 @@ class CreateTaskLogsTable extends Migration
             $table->integer('task_status_id');
             $table->boolean('log_visible_to_customer')->default(true);
             $table->integer('task_log_type_id');
-            $table->timestamp('actual_hours');
+            $table->timestamp('actual_hours')->useCurrent = true;
+
+            //$table->datetime('actual_hours')->def;
             //$table->timestamps()->current();
             $table->integer('task_type_id');
         });

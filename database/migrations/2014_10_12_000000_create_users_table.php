@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->integer('role_id');
             $table->integer('customer_id')->nullable();
-            $table->boolean('active')->dafault(true);
+            $table->boolean('active')->default(true);
             //$table->rememberToken();
             //$table->timestamps();
         });
