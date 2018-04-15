@@ -45,15 +45,15 @@ class User extends Authenticatable
       return $this->hasMany('App\Project');
     }
 
-    public function task() {
+    public function tasks() {
       return $this->hasMany('App\Task');
     }
 
-    public function task_user() {
+    public function task_users() {
       return $this->hasMany('App\Task_user');
     }
 
-    public function task_log() {
+    public function task_logs() {
       return $this->hasMany('App\Task_log');
     }
 }

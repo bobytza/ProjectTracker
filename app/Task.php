@@ -20,8 +20,8 @@ class Task extends Model
       return $this->hasMany('App\Task_log_type');
     }
 
-    public function task_user() {
-      return $this->hasOne('App\Task_user');
+    public function task_users() {
+      return $this->hasMany('App\Task_user');
     }
 
     public function user() {
@@ -35,4 +35,6 @@ class Task extends Model
     public function priority() {
       return $this->belongsTo('App\Priority');
     }
+
+
 }

@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Task_user;
 
-class TaskUserTableSeeder extends Seeder
+class TaskUsersTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
