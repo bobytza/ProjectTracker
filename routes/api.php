@@ -34,6 +34,8 @@ Route::resource('task_statuses', 'TaskStatusController');
 Route::resource('task_types', 'TaskTypeController');
 Route::resource('task_users', 'TaskUserController');
 
+Route::get('client_from_project', 'ProjectController@getClient');
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
