@@ -1,0 +1,16 @@
+<ul class="collapsible popout" materialize="collapsible">
+  <li *ngFor="let entry of _projects">
+    <div class="collapsible-header"><i class="material-icons">code</i>{{ entry.project_title }}</div>
+    <div class="collapsible-body">
+      <app-project [projectId]="entry.id" (change)="updated()"></app-project>
+    </div>
+  </li>
+
+  <li>
+    <div class="collapsible-header"><i class="material-icons">add</i>Add</div>
+    
+    <div #addProject class="collapsible-body">
+        <app-add-project (change)="updated()"></app-add-project>
+    </div>
+  </li>
+</ul>

@@ -1,0 +1,22 @@
+<table>
+  <thead>
+    <tr>
+        <th>Denumire client</th>
+        <th>Titlu proiect</th>
+        <th>ID Task</th>
+        <th>Titlu task</th>
+        <th>Descriere task</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let entry of _tasks">
+      <td><input type="text" [(ngModel)]="entry.client.customer_name"/></td>
+      <td><input type="text" [(ngModel)]="entry.project.project_title"/></td>
+      <td><input type="text" [(ngModel)]="entry.id"/></td>
+      <td><input type="text" [(ngModel)]="entry.task_title"/></td>
+      <td><input type="text" [(ngModel)]="entry.task_description"/></td>
+    </tr>
+  </tbody>
+</table>
+<button (click)="updateAll()" class="btn cyan right">Update</button>

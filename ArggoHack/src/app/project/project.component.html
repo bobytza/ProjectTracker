@@ -1,0 +1,58 @@
+<div class="row" *ngIf="_project">
+  <div class="col s12 m12 l12">
+    <div class="card z-depth-0">
+      <div class="card-content black-text">
+        <div class="row">
+          <label class="col s6 m2 l2 flow-text">Client</label>
+          <a href="/projects" class="flow-text col s6 m5 l5">{{ _project?.customer_data?.customer_name }}</a>
+        </div>
+        
+        <div class="row">
+          <label class="col s6 m2 l2 flow-text">Nume proiect</label>
+          <input placeholder="Placeholder" id="first_name" type="text" class="validate col s6 m5 l5" [(ngModel)]="_project.project_title">
+        </div>
+
+        <div class="row">
+          <label class="col s6 m2 l2 flow-text">Manager proiect</label>
+          <app-manager-selector [selectedManager]="_project.pm_user_id" (change)="managerChanged($event)" class="col s6 m5 l5"></app-manager-selector>
+        </div>
+
+        <div class="row">
+            <label class="col s6 m2 l2 flow-text">Status proiect</label>
+            <app-status-selector [selectedStatus]="_project.project_status_id" (change)="statusChanged($event)" class="col s6 m5 l5"></app-status-selector>
+          </div>
+
+        <div class="row">
+          <label class="col s6 m2 l2 flow-text">Descriere</label>
+          <textarea placeholder="Placeholder" id="first_name" type="text" class="validate col s6 m5 l5" [(ngModel)]="_project.description"></textarea>
+        </div>
+
+        <table>
+            <thead>
+              <tr>
+                  <th>Id</th>
+                  <th>Titlu</th>
+                  <th>Prioritate</th>
+                  <th>Status</th>
+              </tr>
+            </thead>
+    
+            <tbody>
+              <tr *ngFor="let item of _project['tasks']">
+                <td>{{ item.id }}</td>
+                <td>{{ item.task_title }}</td>
+                <td>{{ item.priority }}</td>
+                <td>{{ item.status }}</td>
+              </tr>
+            </tbody>
+          </table>
+
+
+      </div>
+
+      <div class="card-action">
+        <button class="btn-flat cyan right" (click)="save()">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
