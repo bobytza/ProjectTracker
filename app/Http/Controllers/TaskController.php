@@ -7,6 +7,7 @@ use App\Project;
 use App\Client;
 use App\Task_log;
 use App\Task_user;
+use App\Priority;
 use App\Mail\mailme;
 use Illuminate\Http\Request;
 use App\User;
@@ -36,6 +37,12 @@ class TaskController extends Controller
       return app('App\Http\Controllers\ProjectController')->getClient($project);
     }
 
+    public function getPriority(Task $task)
+    {
+      $priority = Priority::find($task->priority_id);
+      return $priority->priority;
+    }
+
     public function index()
     {
         //Mail::to("b.dumitrana@yahoo.com")->send(new mailme)
@@ -56,18 +63,17 @@ class TaskController extends Controller
 
     public function update(Request $request, Task $task)
     {
+        $task->find($task->id);
         $task->update($request->all());
+        $changes = $task->getChanges();
 
-        //trimitere mail la toti userii taskului
-        //Mail::to("b.dumitrana@yahoo.com")->send(new mailme);
-        //$user = Task_user::where('task_id', $task->id);
         $users = Task_user::where('task_id', $task->id)->get();
 
         foreach ($users as $user) {
           $title = "Proiectul <" . $task->task_title . "> updatat!";
           $content = $task;
 
-          Mail::send('emails.send', ['title' => $title, 'content' => $task,],
+          Mail::send('emails.send', ['title' => $title, 'content' => implode(" ", $changes)],
            function ($message) use ($user)
           {
 
@@ -77,10 +83,6 @@ class TaskController extends Controller
 
           });
         }
-
-        //dd($user);
-
-
 
         return response()->json($task, 200);
     }

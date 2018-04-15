@@ -39,6 +39,7 @@ Route::get('tasks_from_project/{project}', 'ProjectController@getTasks');
 
 Route::get('client_from_task/{task}', 'TaskController@getClient');
 Route::get('project_from_task/{task}', 'TaskController@getProject');
+Route::get('priority_from_task/{task}', 'TaskController@getPriority');
 
 Route::get('unassigned_tasks/{task_log}', 'TaskController@getUnassignedTasks');
 

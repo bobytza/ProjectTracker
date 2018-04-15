@@ -14,5 +14,7 @@ class TaskUsersTableSeeder extends Seeder
     {
         Task_user::create(['task_id' => 1, 'user_id' => 2]);
         Task_user::create(['task_id' => 2, 'user_id' => 3]);
+        Task_user::create(['task_id' => 2, 'user_id' => 4]);
+        Task_user::create(['task_id' => 2, 'user_id' => 5]);
     }
 }
