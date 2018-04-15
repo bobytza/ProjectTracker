@@ -3,12 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Project;
+use App\Project_status;
 use App\Customer;
 use App\Task;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
 {
+    public function getStatus(Project $project)
+    {
+      return Project_status::find($project->project_status_id);
+    }
+
     public function getClient(Project $project)
     {
       return Customer::find($project->customer_id);

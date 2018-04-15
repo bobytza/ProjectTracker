@@ -32,5 +32,25 @@ class TaskLogTableSeeder extends Seeder
         'task_log_type_id' => 1,
         'task_type_id' => 3,
       ]);
+
+      Task_log::create([
+        'task_id' => 3,
+        'user_id' => 1,
+        'task_log_title' => 'Task log title 3',
+        'task_log_description' => 'Neasignat description',
+        'task_status_id' => 4,
+        'task_log_type_id' => 1,
+        'task_type_id' => 3,
+      ]);
+
+      Task_log::create([
+        'task_id' => 4,
+        'user_id' => 1,
+        'task_log_title' => 'Task log title 4',
+        'task_log_description' => 'Neasignat description',
+        'task_status_id' => 4,
+        'task_log_type_id' => 1,
+        'task_type_id' => 3,
+      ]);
     }
 }

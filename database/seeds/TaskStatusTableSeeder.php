@@ -19,7 +19,6 @@ class TaskStatusTableSeeder extends Seeder
       Task_status::create(['task_status' => 'Finalizat']);
       Task_status::create(['task_status' => 'Neinceput']);
       Task_status::create(['task_status' => 'In desfasurare']);
-      Task_status::create(['task_status' => 'Status1 task']);
-      Task_status::create(['task_status' => 'Status2 task']);
+      Task_status::create(['task_status' => 'Neasignat']);
     }
 }

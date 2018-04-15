@@ -17,6 +17,7 @@ class CreateTasksTable extends Migration
             $table->increments('id');
             $table->integer('project_id');
             $table->string('task_title');
+            $table->string('status');
             $table->string('task_description');
             $table->integer('priority_id');
             $table->integer('est_analysis');

@@ -25,7 +25,6 @@ Route::resource('users', 'UserController');
 Route::resource('customers', 'CustomerController');
 Route::resource('priorities', 'PriorityController');
 Route::resource('project_statuses', 'ProjectStatusController');
-//done until here
 Route::resource('project_users', 'ProjectUserController');
 Route::resource('roles', 'RoleController');
 Route::resource('task_log_types', 'TaskLogTypeController');
@@ -34,8 +33,15 @@ Route::resource('task_statuses', 'TaskStatusController');
 Route::resource('task_types', 'TaskTypeController');
 Route::resource('task_users', 'TaskUserController');
 
+Route::get('status_from_project/{project}', 'ProjectController@getStatus');
 Route::get('client_from_project/{project}', 'ProjectController@getClient');
 Route::get('tasks_from_project/{project}', 'ProjectController@getTasks');
+
+Route::get('client_from_task/{task}', 'TaskController@getClient');
+Route::get('project_from_task/{task}', 'TaskController@getProject');
+
+Route::get('unassigned_tasks/{task_log}', 'TaskController@getUnassignedTasks');
+
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

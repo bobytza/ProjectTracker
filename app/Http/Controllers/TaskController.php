@@ -3,12 +3,42 @@
 namespace App\Http\Controllers;
 
 use App\Task;
+use App\Project;
+use App\Client;
+use App\Task_log;
+use App\Task_user;
+use App\Mail\mailme;
 use Illuminate\Http\Request;
+use App\User;
+use Mail;
 
 class TaskController extends Controller
 {
+    public function getUnassignedTasks()
+    {
+      $task_logs = Task_log::where('task_status_id', 4)->get();
+      $tasks = array();
+      foreach ($task_logs as $task_log) {
+        array_push($tasks, app('App\Http\Controllers\TaskLogController')->getTask($task_log));
+      }
+
+      return $tasks;
+    }
+
+    public function getProject(Task $task)
+    {
+      return Project::find($task->project_id);
+    }
+
+    public function getClient(Task $task)
+    {
+      $project = self::getProject($task);
+      return app('App\Http\Controllers\ProjectController')->getClient($project);
+    }
+
     public function index()
     {
+        //Mail::to("b.dumitrana@yahoo.com")->send(new mailme)
         return Task::all();
     }
 
@@ -27,6 +57,30 @@ class TaskController extends Controller
     public function update(Request $request, Task $task)
     {
         $task->update($request->all());
+
+        //trimitere mail la toti userii taskului
+        //Mail::to("b.dumitrana@yahoo.com")->send(new mailme);
+        //$user = Task_user::where('task_id', $task->id);
+        $users = Task_user::where('task_id', $task->id)->get();
+
+        foreach ($users as $user) {
+          $title = "Proiectul <" . $task->task_title . "> updatat!";
+          $content = $task;
+
+          Mail::send('emails.send', ['title' => $title, 'content' => $task,],
+           function ($message) use ($user)
+          {
+
+              $message->from('ProjectTracker@arggo.consulting', 'ProjectTracker');
+
+              $message->to(User::find($user->id)->email);
+
+          });
+        }
+
+        //dd($user);
+
+
 
         return response()->json($task, 200);
     }
